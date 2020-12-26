@@ -7,12 +7,23 @@ import (
 	"sort"
 	"strings"
 	"sync"
+	"syscall"
 )
 
 var (
 	lock = sync.Mutex{}
 	old  = map[string]context.Context{}
 )
+
+// DefaultContext is like context with some predefined signals SIGKILL
+// SIGINT, SIGTERM, SIGQUIT, SIGABRT
+func DefaultContext() context.Context {
+	return Context(syscall.SIGKILL,
+		syscall.SIGINT,
+		syscall.SIGTERM,
+		syscall.SIGQUIT,
+		syscall.SIGABRT)
+}
 
 // Context returns a context that is cancelled automatically when a signal received
 // If no signals are provided, all incoming signals cancel the context.
