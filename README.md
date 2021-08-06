@@ -9,7 +9,7 @@
 </p>
 
 ---
-
+As of Go1.16 there is a <a href="https://pkg.go.dev/os/signal#NotifyContext">function in the standard library</a> for doing this, I will no longer maintain this library. 
 This package helps you to create a context that cancels on specific signals. 
 
 Usage: 
